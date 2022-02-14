@@ -14,9 +14,42 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    //return 'Hello world';
+
+    //return ['foo' => 'bar'];
+
+    $username = 'Attila';
+    return view('welcome', [
+        'name' => $username
+    ]);
 });
 
 Route::get('/contact', function () {
     return view('contact');
+});
+
+Route::get('/arraytest', function () {
+	$tasks = [
+		'Go to the store',
+		'Go to the market',
+		'Go to the work',
+        'Task #4'
+	];
+
+    $foobar = 'foobar';
+
+    // return view('arraytest')->withTasks($tasks)->withFoo($foobar);
+
+    return view('arraytest')->with([
+        'foo' => $foobar,
+        'tasks' => $tasks
+    ]);
+});
+
+Route::get('requesttest', function () {
+    return view('requesttest', [
+        'title' => request('title'), // példa: http://127.0.0.1:8000/?title=asdf
+        'foo' => '<script>alert("foobar");</script>',
+	]);
 });

@@ -79,7 +79,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    My first Laravel App
+                    <!-- Szia <?php echo $name; ?> -->
+                    <!-- Szia <?= $name; ?> -->
+                    Szia {{ $name }}
                 </div>
 
                 <div class="links">
