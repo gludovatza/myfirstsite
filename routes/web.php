@@ -30,12 +30,12 @@ Route::get('/contact', function () {
 });
 
 Route::get('/arraytest', function () {
-	$tasks = [
-		'Go to the store',
-		'Go to the market',
-		'Go to the work',
+    $tasks = [
+        'Go to the store',
+        'Go to the market',
+        'Go to the work',
         'Task #4'
-	];
+    ];
 
     $foobar = 'foobar';
 
@@ -51,5 +51,21 @@ Route::get('requesttest', function () {
     return view('requesttest', [
         'title' => request('title'), // példa: http://127.0.0.1:8000/?title=asdf
         'foo' => '<script>alert("foobar");</script>',
-	]);
+    ]);
+});
+
+Route::get('/posts/{post}', function ($post) {
+    // return $post;
+    $posts = [
+        'my-first-post' => 'Hello, this is my first blog post!',
+        'my-second-post' => 'Now I am getting the hang of this blogging thing'
+    ];
+
+    if ( ! array_key_exists($post, $posts)) {
+        abort(404);
+    }
+
+    return view('post', [
+        'post' => $posts[$post] ?? 'Nothing here yet.'
+    ]);
 });
