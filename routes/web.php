@@ -54,18 +54,22 @@ Route::get('requesttest', function () {
     ]);
 });
 
-Route::get('/posts/{post}', function ($post) {
-    // return $post;
-    $posts = [
-        'my-first-post' => 'Hello, this is my first blog post!',
-        'my-second-post' => 'Now I am getting the hang of this blogging thing'
-    ];
+Route::get('/posts/{post}', 'PostsController@show');
 
-    if ( ! array_key_exists($post, $posts)) {
-        abort(404);
-    }
+// Nem is feltétlenül kellene kikommentezni, mivel az iménti útvonal mentén már kiszolgálásra kerülne a felhasználói kérés
+// Csak azért kommenteztem ki, nehogy ezen valaki összezavarodjon, vagy összekeverje az iméntivel.
+// Route::get('/posts/{post}', function ($post) {
+//     // return $post;
+//     $posts = [
+//         'my-first-post' => 'Hello, this is my first blog post!',
+//         'my-second-post' => 'Now I am getting the hang of this blogging thing'
+//     ];
 
-    return view('post', [
-        'post' => $posts[$post] ?? 'Nothing here yet.'
-    ]);
-});
+//     if ( ! array_key_exists($post, $posts)) {
+//         abort(404);
+//     }
+
+//     return view('post', [
+//         'post' => $posts[$post] ?? 'Nothing here yet.'
+//     ]);
+// });
